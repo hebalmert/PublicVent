@@ -1,0 +1,56 @@
+﻿@page "/usuarios/detailusuario/{Id:int}"
+@attribute [Authorize(Roles = "User")]
+
+@if (Usuario is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="6">
+                    <MudTextField Label="@GetDisplayName(() => Usuario.FirstName)"
+                                  @bind-Value="@Usuario.FirstName"
+                                  For="@(() => Usuario.FirstName)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Usuario.LastName)"
+                                  @bind-Value="@Usuario.LastName"
+                                  For="@(() => Usuario.LastName)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Usuario.Nro_Document)"
+                                  @bind-Value="@Usuario.Nro_Document"
+                                  For="@(() => Usuario.Nro_Document)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Usuario.PhoneNumber)"
+                                  @bind-Value="@Usuario.PhoneNumber"
+                                  For="@(() => Usuario.PhoneNumber)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Usuario.Address)"
+                                  @bind-Value="@Usuario.Address"
+                                  For="@(() => Usuario.Address)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudCheckBox Label="@GetDisplayName(() => Usuario.Active)"
+                                 @bind-Value="@Usuario.Active"
+                                 For="@(() => Usuario.Active)"
+                                 Class="mb-4" ReadOnly="true" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Label="@GetDisplayName(() => Usuario.UserName)"
+                                  @bind-Value="@Usuario.UserName"
+                                  For="@(() => Usuario.UserName)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Usuario.Job)"
+                                  @bind-Value="@Usuario.Job"
+                                  For="@(() => Usuario.Job)"
+                                  Class="mb-4" ReadOnly="true" />
+
+                    <MudImage Src="@Usuario.ImageFullPath" Width="90" Height="60" />
+
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+    </MudDialog>
+}
+

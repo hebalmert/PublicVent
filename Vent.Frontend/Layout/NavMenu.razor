@@ -1,0 +1,42 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Vent.Frontend</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+﻿<MudNavMenu Color="Color.Surface">
+    <MudNavLink Href="/" Icon="@Icons.Material.Rounded.Home" IconColor="Color.Surface" Style="color:darkgrey">Inicio</MudNavLink>
+    <MudDivider />
+    <AuthorizeView Roles="Admin">
+        <Authorized>
+            <MudNavGroup Title="Control Sistema" Icon="@Icons.Material.Filled.Settings" IconColor="Color.Surface" Expanded="false" Style="color:darkgrey">
+                <MudNavLink Href="/softplans" Icon="@Icons.Material.Filled.Checklist" IconColor="Color.Info" Style="color:darkgrey">Planes</MudNavLink>
+                <MudNavLink Href="/corporations" Icon="@Icons.Material.Filled.People" IconColor="Color.Info" Style="color:darkgrey">Corporacion</MudNavLink>
+                <MudNavLink Href="/managers" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info" Style="color:darkgrey">Manager</MudNavLink>
+            </MudNavGroup>
+        </Authorized>
+    </AuthorizeView>
+    <AuthorizeView Roles="UserAux">
+        <Authorized>
+            <MudNavGroup Title="Configuracion Sistema" Icon="@Icons.Material.Filled.Settings" IconColor="Color.Surface" Expanded="false" Style="color:darkgrey">
+                <MudNavLink Href="/companies" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info" Style="color:darkgrey">Companias</MudNavLink>
+            </MudNavGroup>
+        </Authorized>
+    </AuthorizeView>
+    <AuthorizeView Roles="User">
+        <Authorized>
+            <MudNavGroup Title="Configuracion Sistema" Icon="@Icons.Material.Filled.Settings" IconColor="Color.Surface" Expanded="false" Style="color:darkgrey">
+                <MudNavLink Href="/usuarios" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info" Style="color:darkgrey">Usuarios</MudNavLink>
+            </MudNavGroup>
+        </Authorized>
+    </AuthorizeView>
+
+    <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Info" Style="color:darkgrey">Nosotros</MudNavLink>
+    <MudDivider />
+</MudNavMenu>
+
+
+

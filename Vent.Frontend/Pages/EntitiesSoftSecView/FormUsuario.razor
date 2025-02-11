@@ -1,0 +1,64 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="_editContext" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+
+    <MudGrid>
+        <MudItem xs="6">
+            <MudTextField Label="@GetDisplayName(() => Usuario.FirstName)"
+                          @bind-Value="@Usuario.FirstName"
+                          For="@(() => Usuario.FirstName)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Usuario.LastName)"
+                          @bind-Value="@Usuario.LastName"
+                          For="@(() => Usuario.LastName)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Usuario.Nro_Document)"
+                          @bind-Value="@Usuario.Nro_Document"
+                          For="@(() => Usuario.Nro_Document)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Usuario.PhoneNumber)"
+                          @bind-Value="@Usuario.PhoneNumber"
+                          For="@(() => Usuario.PhoneNumber)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Usuario.Address)"
+                          @bind-Value="@Usuario.Address"
+                          For="@(() => Usuario.Address)"
+                          Class="mb-4" />
+            <MudCheckBox Label="@GetDisplayName(() => Usuario.Active)"
+                         @bind-Value="@Usuario.Active"
+                         Class="mb-4" />
+        </MudItem>
+        <MudItem xs="6">
+            <MudTextField Label="@GetDisplayName(() => Usuario.UserName)"
+                          @bind-Value="@Usuario.UserName"
+                          For="@(() => Usuario.UserName)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Usuario.Job)"
+                          @bind-Value="@Usuario.Job"
+                          For="@(() => Usuario.Job)"
+                          Class="mb-4" />
+
+            <InputImage ImageSelected="ImageSelected" ImageUrl="@ImageUrl" />
+
+        </MudItem>
+    </MudGrid>
+
+
+    <br />
+    <div class="mb-4" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Color="Color.Surface"
+                   OnClick="ReturnAction">
+            Volver
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Dark"
+                   ButtonType="ButtonType.Submit">
+            Guardar
+        </MudButton>
+    </div>
+</EditForm>
+

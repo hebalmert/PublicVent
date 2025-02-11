@@ -1,0 +1,19 @@
+﻿@page "/managers/edit/{Id:int}"
+@attribute [Authorize(Roles = "Admin")]
+
+@if (Manager is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <FormManager @ref=FormManager
+                         IsEditControl="true"
+                         Manager="Manager"
+                         OnSubmit="Edit"
+                         ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

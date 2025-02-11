@@ -1,0 +1,101 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="_editContext" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+
+    <MudGrid>
+        <MudItem xs="6">
+            <MudTextField Label="@GetDisplayName(() => Corporation.Name)"
+                          @bind-Value="@Corporation.Name"
+                          For="@(() => Corporation.Name)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Corporation.NroDocument)"
+                          @bind-Value="@Corporation.NroDocument"
+                          For="@(() => Corporation.NroDocument)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Corporation.Phone)"
+                          @bind-Value="@Corporation.Phone"
+                          For="@(() => Corporation.Phone)"
+                          Class="mb-4" />
+            <MudTextField Label="@GetDisplayName(() => Corporation.Address)"
+                          @bind-Value="@Corporation.Address"
+                          For="@(() => Corporation.Address)"
+                          Class="mb-4" />
+            @if (SoftPlans is null)
+            {
+                <Loading />
+            }
+            else
+            {
+                <MudSelect T="Country" Class="mb-4"
+                           Value="SelectedCountry"
+                           ValueChanged="CountryChanged"
+                           ToStringFunc="@(e=> e==null?null : $"{e.Name}")"
+                           Placeholder="--Seleccione Pais--"
+                           For="@(() => Corporation.Country)">
+                    @foreach (var item in Countries!)
+                    {
+                        <MudSelectItem Value="item">@item.Name</MudSelectItem>
+                    }
+                </MudSelect>
+            }
+            <MudCheckBox Label="@GetDisplayName(() => Corporation.Active)"
+                         @bind-Value="@Corporation.Active"
+                         For="@(() => Corporation.Active)"
+                         Class="mb-4" />
+        </MudItem>
+        <MudItem xs="6">
+            @if (SoftPlans is null)
+            {
+                <Loading />
+            }
+            else
+            {
+                <MudSelect T="SoftPlan" Class="mb-4"
+                           Value="SelectedSoftplan"
+                           ValueChanged="SoftPlanChanged"
+                           ToStringFunc="@(e=> e==null?null : $"{e.Name}")"
+                           Placeholder="--Seleccione Plan--"
+                           For="@(() => Corporation.SoftPlan)">
+                    @foreach (var item in SoftPlans!)
+                    {
+                        <MudSelectItem Value="item">@item.Name</MudSelectItem>
+                    }
+                </MudSelect>
+            }
+            <MudDatePicker Label="Inicio" Class="mb-4"
+                           Date="@Corporation.DateStart"
+                           DateChanged="DateInicioChanged"
+                           MinDate="DateMin"
+                           StartMonth="DateMin"
+                           ShowToolbar="false"
+                           DateFormat="dd.MM.yyyy" />
+            <MudDatePicker Label="Fin" Class="mb-4"
+                           Date="@Corporation.DateEnd"
+                           DateChanged="DateFinalChanged"
+                           MinDate="DateMin"
+                           StartMonth="DateMin"
+                           ShowToolbar="false"
+                           DateFormat="dd.MM.yyyy" />
+
+            <InputImage ImageSelected="ImageSelected" ImageUrl="@ImageUrl" />
+
+        </MudItem>
+    </MudGrid>
+
+    <br />
+    <div class="mb-4" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Color="Color.Surface"
+                   OnClick="ReturnAction">
+            Volver
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Dark"
+                   ButtonType="ButtonType.Submit">
+            Guardar
+        </MudButton>
+    </div>
+</EditForm>

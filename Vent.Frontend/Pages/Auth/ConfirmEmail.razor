@@ -1,0 +1,20 @@
+﻿@page "/api/accounts/ConfirmEmail"
+
+<MudPaper Class="confirmation-container p-4 shadow-sm">
+    <MudGrid>
+        <MudItem xs="12" Class="text-center mb-4">
+            <MudText Typo="Typo.h3">Confirmacion de Correo</MudText>
+        </MudItem>
+        <MudItem xs="12" Class="text-center mb-4">
+            <MudText Typo="Typo.body1">Es Necesario confirmar el correo para poder activar su cuenta.</MudText>
+        </MudItem>
+        <MudItem xs="12" Class="text-center">
+            <MudButton Variant="Variant.Filled"
+                       StartIcon="@Icons.Material.Filled.Save"
+                       Color="Color.Dark"
+                       OnClick="ConfirmAccountAsync">
+                Confirmar
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>

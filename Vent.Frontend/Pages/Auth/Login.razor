@@ -1,0 +1,45 @@
+﻿﻿<MudDialog>
+    <DialogContent>
+        <EditForm Model="_loginDTO" OnValidSubmit="LoginAsync">
+            <DataAnnotationsValidator />
+            <MudGrid Class="mb-4">
+                <MudItem xs="12" sm="12">
+                    <MudTextField Label="Usuario" @bind-Value="@_loginDTO.Email" InputType="InputType.Email" />
+                    <ValidationMessage For="@(() => _loginDTO.Email)" />
+                </MudItem>
+                <MudItem xs="12" sm="12">
+                    <MudTextField Label="Clave" @bind-Value="@_loginDTO.Password" InputType="InputType.Password" />
+                    <ValidationMessage For="@(() => _loginDTO.Password)" />
+                </MudItem>
+            </MudGrid>
+            <MudGrid Class="mb-5">
+                <MudItem xs="12" sm="6" Class="d-flex justify-content-center">
+                    <MudButton Variant="Variant.Filled"
+                               StartIcon="@Icons.Material.Filled.Save"
+                               Color="Color.Dark"
+                               ButtonType="ButtonType.Submit">
+                        Iniciar
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" Class="d-flex justify-content-center">
+                    <MudButton Variant="Variant.Filled"
+                               StartIcon="@Icons.Material.Filled.ArrowBack"
+                               Color="Color.Surface"
+                               OnClick="CloseModal">
+                        Cancel
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+        <MudGrid Class="d-flex justify-content-end">
+            <MudItem xs="12" sm="12">
+                <MudLink OnClick="ShowModalRecoverPassword" Underline="Underline.None" Color="Color.Info">
+                    Recuperar la Clave
+                </MudLink>
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+    <DialogActions>
+
+    </DialogActions>
+</MudDialog>

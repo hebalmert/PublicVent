@@ -1,0 +1,19 @@
+﻿@page "/corporations/create"
+@attribute [Authorize(Roles = "Admin")]
+
+@if (Corporation is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <FormCorporation @ref=FormCorporation
+                             IsEditControl="false"
+                             Corporation="Corporation"
+                             OnSubmit="Create"
+                             ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

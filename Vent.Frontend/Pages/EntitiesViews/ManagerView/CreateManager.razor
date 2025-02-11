@@ -1,0 +1,19 @@
+﻿@page "/managers/create"
+@attribute [Authorize(Roles = "Admin")]
+
+@if (Manager is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <FormManager @ref=FormManager
+                         IsEditControl="false"
+                         Manager="Manager"
+                         OnSubmit="Create"
+                         ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

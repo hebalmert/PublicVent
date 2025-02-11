@@ -1,0 +1,19 @@
+﻿@page "/usuarios/edit/{Id:int}"
+@attribute [Authorize(Roles = "User")]
+
+@if (Usuario is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <FormUsuario @ref=FormUsuario
+                         IsEditControl="true"
+                         Usuario="Usuario"
+                         OnSubmit="Edit"
+                         ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

@@ -1,0 +1,20 @@
+﻿@page "/softplans/edit/{Id:int}"
+@attribute [Authorize(Roles = "Admin")]
+
+@if (SoftPlan is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog>
+        <DialogContent>
+            <div class="container" style="width:300px">
+                <FormSoftPlan @ref="FormSoftPlan"
+                             SoftPlan="SoftPlan"
+                             OnSubmit="Edit"
+                             ReturnAction="Return" />
+            </div>
+        </DialogContent>
+    </MudDialog>
+}

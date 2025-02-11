@@ -1,0 +1,19 @@
+﻿@page "/usuarios/create"
+@attribute [Authorize(Roles = "User")]
+
+@if (Usuario is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <FormUsuario @ref=FormUsuario
+                         IsEditControl="false"
+                         Usuario="Usuario"
+                         OnSubmit="Create"
+                         ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

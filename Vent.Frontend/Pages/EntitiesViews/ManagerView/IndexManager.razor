@@ -1,0 +1,108 @@
+﻿@page "/managers"
+@attribute [Authorize(Roles = "Admin")]
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-10">
+            <div class="shadow-lg mb-5 card-roud">
+                <div class="card card-roud">
+                    <div class="card-body">
+                        <h3>Manager Control</h3>
+
+                        <div class="col-sm-12">
+                            <div class="row align-items-center">
+                                <!-- Columna para el botón -->
+                                <div class="col-md-3 d-flex justify-content-start">
+                                    <MudButton Variant="Variant.Filled"
+                                               EndIcon="@Icons.Material.Filled.AddCircle"
+                                               Color="Color.Dark" style="width:130px"
+                                               OnClick="@(()=> ShowModalAsync())">
+                                        Manager
+                                    </MudButton>
+                                </div>
+                                <!-- Columna para el filtro -->
+                                <div class="col-md-9 d-flex justify-content-end">
+                                    <FilterComponent ApplyFilter="SetFilterValue" />
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <hr style="height:2px;border:none;color:#333;background-color:#333;" />
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <GenericList MyList="Managers">
+                                    <Body>
+                                        <table class="table table-responsive table-striped table-hover justify-content-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Foto</th>
+                                                    <th>Usuario</th>
+                                                    <th>Corporacion</th>
+                                                    <th>Puesto</th>
+                                                    <th>Activo</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Managers!)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <MudImage Src="@item.ImageFullPath" Width="90" Height="60" />
+                                                        </td>
+                                                        <td>
+                                                            @item.FullName
+                                                        </td>
+                                                        <td>
+                                                            @item.Corporation!.Name
+                                                        </td>
+                                                        <td>
+                                                            @item.Job
+                                                        </td>
+                                                        <td>
+                                                            @item.Active
+                                                        </td>
+                                                        <td>
+                                                            <MudCheckBox @bind-Value="@item.Active" ReadOnly="true"></MudCheckBox>
+                                                        </td>
+                                                        <td style="width:1px; padding-left:1px; padding-right:4px;">
+                                                            <MudFab Size="Size.Small"
+                                                                    EndIcon="@Icons.Material.Filled.Edit"
+                                                                    Color="Color.Dark"
+                                                                    OnClick="@(()=> ShowModalAsync(item.ManagerId, true))">
+                                                            </MudFab>
+                                                        </td>
+                                                        <td style="width:1px; padding-left:1px; padding-right:4px;">
+                                                            <MudFab Size="Size.Small"
+                                                                    OnClick="@(()=> ShowDetailsAsync(item.ManagerId))"
+                                                                    StartIcon="@Icons.Material.Filled.Checklist"
+                                                                    Color="Color.Dark">
+                                                            </MudFab>
+                                                        </td>
+                                                        <td style="width:1px; padding-left:1px; padding-right:4px;">
+                                                            <MudFab Size="Size.Small"
+                                                                    EndIcon="@Icons.Material.Filled.Delete"
+                                                                    Color="Color.Error"
+                                                                    OnClick="@(()=> DeleteAsync(item.ManagerId))">
+                                                            </MudFab>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </Body>
+                                </GenericList>
+                            </div>
+                        </div>
+                        <hr style="height:2px;border:none;color:#333;background-color:#333;" />
+                        <Pagination CurrentPage="CurrentPage"
+                                    SelectedPage="SelectedPage"
+                                    TotalPages="TotalPages">
+                        </Pagination>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="_editContext" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+    <MudTextField Label="@GetDisplayName(() => SoftPlan.Name)"
+                  @bind-Value="@SoftPlan.Name"
+                  For="@(() => SoftPlan.Name)"
+                  Class="mb-4" />
+    <MudTextField Label="@GetDisplayName(() => SoftPlan.Meses)"
+                  @bind-Value="@SoftPlan.Meses"
+                  For="@(() => SoftPlan.Meses)"
+                  Class="mb-4" />
+    <MudTextField Label="@GetDisplayName(() => SoftPlan.Price)"
+                  @bind-Value="@SoftPlan.Price"
+                  For="@(() => SoftPlan.Price)"
+                  Class="mb-4" />
+    <MudTextField Label="@GetDisplayName(() => SoftPlan.ProductCount)"
+                  @bind-Value="@SoftPlan.ProductCount"
+                  For="@(() => SoftPlan.ProductCount)"
+                  Class="mb-4" />
+    <MudCheckBox Label="@GetDisplayName(() => SoftPlan.Active)"
+                 @bind-Value="@SoftPlan.Active"
+                 For="@(() => SoftPlan.Active)"
+                 Class="mb-4" />
+    <br />
+    <div class="mb-4" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Color="Color.Surface"
+                   OnClick="ReturnAction">
+            Volver
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Dark"
+                   ButtonType="ButtonType.Submit">
+            Guardar
+        </MudButton>
+    </div>
+</EditForm>

@@ -1,0 +1,20 @@
+﻿﻿<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.body2">Deseas cerrar la sesion?</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.ArrowBack"
+                   Color="Color.Surface"
+                   OnClick="CancelAction">
+            Cancel
+        </MudButton>
+        <MudSpacer />
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Dark"
+                   OnClick="LogoutActionAsync">
+            Cerrar
+        </MudButton>
+    </DialogActions>
+</MudDialog>

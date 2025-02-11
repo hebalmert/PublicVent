@@ -1,0 +1,61 @@
+﻿@page "/corporations/details/{Id:int}"
+@* @attribute [Authorize(Roles = "Admin")] *@
+
+@if (Corporation is null)
+{
+    <Loading />
+}
+else
+{
+    ﻿<MudDialog MaxWidth="MaxWidth.large" FullWidth="true">
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="6">
+                    <MudTextField Label="@GetDisplayName(() => Corporation.Name)"
+                                  @bind-Value="@Corporation.Name"
+                                  For="@(() => Corporation.Name)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Corporation.NroDocument)"
+                                  @bind-Value="@Corporation.NroDocument"
+                                  For="@(() => Corporation.NroDocument)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Corporation.Phone)"
+                                  @bind-Value="@Corporation.Phone"
+                                  For="@(() => Corporation.Phone)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Corporation.Address)"
+                                  @bind-Value="@Corporation.Address"
+                                  For="@(() => Corporation.Address)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudTextField Label="@GetDisplayName(() => Country!.Name)"
+                                  @bind-Value="@Country!.Name"
+                                  For="@(() => Country!.Name)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudCheckBox Label="@GetDisplayName(() => Corporation.Active)"
+                                 @bind-Value="@Corporation.Active"
+                                 For="@(() => Corporation.Active)"
+                                 Class="mb-4" ReadOnly="true" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Label="@GetDisplayName(() => SoftPlan!.Name)"
+                                  @bind-Value="@SoftPlan!.Name"
+                                  For="@(() => SoftPlan!.Name)"
+                                  Class="mb-4" ReadOnly="true" />
+                    <MudDatePicker Label="Inicio" Class="mb-4"
+                                   Date="@Corporation.DateStart"
+                                   ShowToolbar="false"
+                                   DateFormat="dd.MM.yyyy" ReadOnly="true" />
+                    <MudDatePicker Label="Fin" Class="mb-4"
+                                   Date="@Corporation.DateEnd"
+                                   ShowToolbar="false"
+                                   DateFormat="dd.MM.yyyy" ReadOnly="true" />
+
+                    <MudImage Src="@Corporation.ImageFullPath" Width="70" Height="60" />
+
+                </MudItem>
+            </MudGrid>
+
+        </DialogContent>
+    </MudDialog>
+}
+

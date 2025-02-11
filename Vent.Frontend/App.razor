@@ -1,0 +1,23 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <Authorizing>
+                <p>Autorizando...</p>
+            </Authorizing>
+            <NotAuthorized>
+                <p>No se encuentra autorizado...</p>
+            </NotAuthorized>
+        </AuthorizeRouteView>
+
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <PageTitle>Recurso no Encontrado</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert">No hay ningun Recurso en esta ruta...</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>

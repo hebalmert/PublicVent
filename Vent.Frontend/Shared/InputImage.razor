@@ -1,0 +1,35 @@
+﻿﻿<div class="mb-3">
+    <label class="form-label">@Label</label>
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Seleccionar Imagen"
+               readonly="readonly"
+               value="@FileName" />
+        <label class="input-group-btn">
+            <span class="btn btn-primary">
+                Buscar<InputFile OnChange="OnChange" class="d-none" accept=".jpg,.jpeg,.png" />
+            </span>
+        </label>
+    </div>
+</div>
+
+<div>
+    @if (ImageBase64 is not null)
+    {
+        <div>
+            <div style="margin: 10px">
+                <img src="data:image/jpeg;base64,@ImageBase64" style="height:180px;" />
+            </div>
+        </div>
+    }
+
+    @if (ImageUrl is not null && ImageUrl.StartsWith("http"))
+    {
+        <div>
+            <div style="margin: 10px">
+                <img src="@ImageUrl" style="height:180px;" />
+            </div>
+        </div>
+    }
+</div>

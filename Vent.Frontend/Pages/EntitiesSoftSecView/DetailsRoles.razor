@@ -1,0 +1,105 @@
+﻿@page "/usuarios/details/{Id:int}"
+@attribute [Authorize(Roles = "User")]
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-10">
+            <div class="shadow-lg mb-5 card-roud">
+                <div class="card card-roud">
+                    <div class="card-body">
+                        @if (Usuario is null)
+                        {
+                            <Loading />
+                        }
+                        else
+                        {
+                            <h3>@Usuario!.FullName</h3>
+
+                            <div class="col-sm-12">
+                                <div class="row align-items-center">
+                                    <!-- Columna para el botón -->
+                                    <div class="col-md-3 d-flex justify-content-start">
+                                        <div>
+                                            <MudButton Variant="Variant.Filled"
+                                                       EndIcon="@Icons.Material.Filled.ArrowBack"
+                                                       Color="Color.Surface" style="width:150px"
+                                                       Href="@($"/usuarios")">
+                                                Volver
+                                            </MudButton>
+                                        </div>
+                                        <div style="padding-left:4px">
+                                            <MudButton Variant="Variant.Filled"
+                                                       EndIcon="@Icons.Material.Filled.AddBox"
+                                                       Color="Color.Dark" style="width:150px"
+                                                       OnClick="@(()=> ShowModalAsync())">
+                                                Roles
+                                            </MudButton>
+                                        </div>
+                                    </div>
+                                    <!-- Columna para el filtro -->
+                                    <div class="col-md-9 d-flex justify-content-end">
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        }
+                        <hr style="height:2px;border:none;color:#333;background-color:#333;" />
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                @if (UsuarioRoles is null)
+                                {
+                                    <Loading />
+                                }
+                                else
+                                {
+                                    <GenericList MyList="UsuarioRoles">
+                                        <Body>
+                                            <table class="table table-responsive table-striped table-hover justify-content-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Role</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in UsuarioRoles!)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @item.UserType.ToString()
+                                                            </td>
+                                                            <td style="width:1px; padding-left:1px; padding-right:4px;">
+                                                                <MudFab Size="Size.Small"
+                                                                        EndIcon="@Icons.Material.Filled.Delete"
+                                                                        Color="Color.Error"
+                                                                        OnClick="@(()=> DeleteAsync(item.UsuarioRoleId))">
+                                                                </MudFab>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </Body>
+                                    </GenericList>
+                                }
+
+                            </div>
+                        </div>
+                        <hr style="height:2px;border:none;color:#333;background-color:#333;" />
+                        @if (UsuarioRoles is null)
+                        {
+                            <Loading />
+                        }
+                        else
+                        {
+                            <Pagination CurrentPage="CurrentPage"
+                                        SelectedPage="SelectedPage"
+                                        TotalPages="TotalPages">
+                            </Pagination>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
